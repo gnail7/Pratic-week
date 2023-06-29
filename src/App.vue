@@ -7,25 +7,36 @@
   import SectorGraph from './components/sector-graph/index.vue';
   import TrendGraph from './components/trend-graph/index.vue';
   import CoverRation from './components/cover-ration/index.vue'
+  import GasContentGraph from './components/gas-content-graph/index.vue'
   import {ref,onMounted,provide} from 'vue';
   import {listProvinceItemTotalStatis} from './api'
+  const totalGasData = ref([])
   onMounted(async()=>{
     await init()
   })
+  provide('totalGasData',totalGasData)
   const init = async()=>{
-    const r = await listProvinceItemTotalStatis()
+    try {
+      const r = await listProvinceItemTotalStatis()
+      totalGasData.value = r
+    } catch (error) {
+      
+    }
   }
 </script>
 
 <template>
   <div class="main_banner">
-    <Header class="over"></Header>
+    <Header class="over header"></Header>
     <section class="head part flex_between">
       <div class="left col over">
         <CoverRation/>
       </div>
       <div class="right col over">
-        <!-- <SectorGraph/> -->
+        <GasContentGraph
+        :att="'coTotal'"
+        :color="'#fb5e59'"
+        :label="'一氧化碳(CO)'"/>
       </div>
     </section>
     <section class="flex part flex_between">
@@ -33,14 +44,20 @@
         <SectorGraph/>
       </div>
       <div class="right  over">
-        <ForeWarning/>
+        <GasContentGraph
+        :att="'so2Total'"
+        :color="'#38c62f'"
+        :label="'二氧化硫(SO2)'"/>   
       </div>
     </section>
-    <section class="bottom part flex">
+    <section class="bottom part flex_between">
       <TrendGraph class="col over"/>
       <StaticGraph  class="col over"/>
-      <!-- <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap> -->
-      <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap>
+      <GasContentGraph
+        class="col over"
+        :att="'spmTotal'"
+        :color="'#2c95fc'"
+        :label="'spm'"/>  
     </section>
     <div class="map">
       <MapGraph/>
@@ -53,11 +70,13 @@
 @import './style.css';
 .main_banner{
   width:100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   padding-top:1rem;
+  
+  overflow: hidden;
 
   .map{
     position: absolute;
@@ -76,14 +95,16 @@
   z-index:2;
 }
 .left ,.right{
-  width: 30vw;
+  width: 33vw;
+  height: 30vh;
 }
 .flex{
   display: flex;
   .col{
-    flex:1;
+    // flex:1;
     width: 100%;
     height: 100%;
+    width: 33vw;
   }
 }
 
@@ -93,5 +114,7 @@
 .bottom{
   background-color: pink;
 }
-
+.header{
+  height:3rem;
+}
 </style>
