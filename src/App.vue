@@ -1,10 +1,20 @@
 <script setup>
   import MapGraph from './components/MapGraph.vue';
   import ItemWrap from './components/item-wrap/index.vue'
-  import Header from './components/header/index.vue'
+  import Header from './components/header/index.vue';
   import StaticGraph from './components/staticGraph/index.vue';
-  import ForeWarning from './components/fore-warning/index.vue'
-  import SectorGraph from './components/sector-graph/index.vue'
+  import ForeWarning from './components/fore-warning/index.vue';
+  import SectorGraph from './components/sector-graph/index.vue';
+  import TrendGraph from './components/trend-graph/index.vue';
+  import CoverRation from './components/cover-ration/index.vue'
+  import {ref,onMounted,provide} from 'vue';
+  import {listProvinceItemTotalStatis} from './api'
+  onMounted(async()=>{
+    await init()
+  })
+  const init = async()=>{
+    const r = await listProvinceItemTotalStatis()
+  }
 </script>
 
 <template>
@@ -12,7 +22,7 @@
     <Header class="over"></Header>
     <section class="head part flex_between">
       <div class="left col over">
-        <StaticGraph/>
+        <CoverRation/>
       </div>
       <div class="right col over">
         <!-- <SectorGraph/> -->
@@ -27,8 +37,9 @@
       </div>
     </section>
     <section class="bottom part flex">
-      <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap>
-      <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap>
+      <TrendGraph class="col over"/>
+      <StaticGraph  class="col over"/>
+      <!-- <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap> -->
       <ItemWrap class="col over" title="数据总览">数据总览</ItemWrap>
     </section>
     <div class="map">
@@ -42,7 +53,7 @@
 @import './style.css';
 .main_banner{
   width:100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -65,17 +76,22 @@
   z-index:2;
 }
 .left ,.right{
-  width: 25vw;
+  width: 30vw;
 }
 .flex{
   display: flex;
   .col{
     flex:1;
+    width: 100%;
+    height: 100%;
   }
 }
 
 .box{
   position: relative;
+}
+.bottom{
+  background-color: pink;
 }
 
 </style>

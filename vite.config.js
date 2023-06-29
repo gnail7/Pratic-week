@@ -11,5 +11,8 @@ export default defineConfig({
       "components": resolve(__dirname, "./src/components"),
       "api": resolve(__dirname, "./src/api"),
     }
-  }
+  },
+  devServer:[
+    
+  ]
 })

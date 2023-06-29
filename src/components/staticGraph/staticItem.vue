@@ -21,7 +21,11 @@
 <template>
     <div class="item">
         <img :src="thisIcon.path"/>
-        <span :style="{color:thisIcon.color}">{{ label }}</span>
+        <div class="flex_column" :style="{color:thisIcon.color}">
+            <span class="divide">{{ label }}</span>
+            <span class="divide">{{ value }}</span>
+        </div>
+
     </div>
 </template>
 
@@ -35,5 +39,13 @@
             width: 3rem;
             height: 3rem;
         }
+    }
+    .flex_column{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .divide{
+        margin-top: 10px;
     }
 </style>

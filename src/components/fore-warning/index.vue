@@ -36,10 +36,11 @@
         };
         const echart = new EChartsOption(option)
         echart.init('main1')
+        init()
     })
-    const init = ()=>{
+    const init = async()=>{
         try {
-            
+          
         } catch (error) {
             
         }

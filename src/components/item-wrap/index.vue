@@ -23,6 +23,7 @@
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  // background: rgba(0,0,0,0.4);
 }
 $item-title-height: 2rem;
 $item_title_content-height: calc(100% - 2rem);
