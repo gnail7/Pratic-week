@@ -21,6 +21,8 @@
 <style scoped lang="scss">
 .item-wrap {
   box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
 $item-title-height: 2rem;
 $item_title_content-height: calc(100% - 2rem);
@@ -31,7 +33,7 @@ $item_title_content-height: calc(100% - 2rem);
   width: 100%;
   color: #31abe3;
   text-align: center;
-  background: linear-gradient(to right, transparent, #0f0756, transparent);
+  // background: linear-gradient(to right, transparent, #0f0756, transparent);
   position: relative;
   display: flex;
   align-items: center;

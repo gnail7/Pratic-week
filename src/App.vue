@@ -4,6 +4,7 @@
   import Header from './components/header/index.vue'
   import StaticGraph from './components/staticGraph/index.vue';
   import ForeWarning from './components/fore-warning/index.vue'
+  import SectorGraph from './components/sector-graph/index.vue'
 </script>
 
 <template>
@@ -14,14 +15,12 @@
         <StaticGraph/>
       </div>
       <div class="right col over">
-        <ItemWrap title="数据总览">数据总览</ItemWrap>
+        <!-- <SectorGraph/> -->
       </div>
     </section>
     <section class="flex part flex_between">
       <div class="left  over">
-          <ItemWrap title="用户总览">
-
-          </ItemWrap>
+        <SectorGraph/>
       </div>
       <div class="right  over">
         <ForeWarning/>

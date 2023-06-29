@@ -32,3 +32,8 @@
   display: flex;
   justify-content: space-between;
 }
+.flex_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
