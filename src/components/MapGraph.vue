@@ -53,6 +53,7 @@
            },
            roam: true,
            zoom: 1.9,
+           resize:false,
            emphasis: {
             label: {
                 color: '#fff',

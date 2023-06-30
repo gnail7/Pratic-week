@@ -20,8 +20,17 @@
         series: [
             {
             data: [],
-            type: 'bar'
+            type: 'bar',
+            markPoint: {
+                data: [
+                { type: 'max', name: 'Max' },
+                { type: 'min', name: 'Min' }
+                ]
+            },
+            markLine: {
+                data: [{ type: 'average', name: 'Avg' }]
             }
+            },
         ],
         tooltip: {
             trigger: 'axis',
@@ -53,6 +62,7 @@
                 color:'#fff'
             }
         },
+        
     };
     onMounted(()=>{       
     })

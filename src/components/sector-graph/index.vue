@@ -82,7 +82,6 @@
                 ...item
             }))
             option.series[0].data = (sectorData.value)
-            // option.color = color.value
             const echart = new EChartsOption(option)
             echart.init('sector')
         } catch (error) {
