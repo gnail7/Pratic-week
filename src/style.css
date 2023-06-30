@@ -18,7 +18,10 @@
   background: linear-gradient(to right, #ff0000, #0000ff);
   -webkit-text-fill-color: transparent; /* Safari/Chrome */
 }
-
+.flex_column{
+  display: flex;
+  flex-direction: column;
+}
 .divide_line {
   position: absolute;
   height: 2px;

@@ -28,40 +28,39 @@
 <template>
   <div class="main_banner">
     <Header class="over header"></Header>
-    <section class="head part flex_between">
-      <div class="left col over">
-        <CoverRation/>
-      </div>
-      <div class="right col over">
-        <GasContentGraph
-        :att="'coTotal'"
-        :color="'#fb5e59'"
-        :label="'一氧化碳(CO)'"/>
-      </div>
+    <section class="top flex">
+        <div class="col left flex_column">
+          <CoverRation class="col"/>
+          <SectorGraph class="col"/>
+        </div>
+        <div class="mid">
+          <div class="graph">
+            <MapGraph/>
+          </div>
+        </div>
+        <div class="col left flex_column">
+            <GasContentGraph
+            class="col"
+            :att="'coTotal'"
+            :color="'#fb5e59'"
+            :label="'一氧化碳(CO)'"/>
+              <GasContentGraph
+              class="col"
+            :att="'so2Total'"
+            :color="'#38c62f'"
+            :label="'二氧化硫(SO2)'"/>   
+        </div>
     </section>
-    <section class="flex part flex_between">
-      <div class="left  over">
-        <SectorGraph/>
-      </div>
-      <div class="right  over">
-        <GasContentGraph
-        :att="'so2Total'"
-        :color="'#38c62f'"
-        :label="'二氧化硫(SO2)'"/>   
-      </div>
-    </section>
-    <section class="bottom part flex_between">
-      <TrendGraph class="col over"/>
+    <section class="bottom flex">
+      <TrendGraph class="col left over"/>
       <StaticGraph  class="col over"/>
       <GasContentGraph
-        class="col over"
+      
+        class="col left over"
         :att="'spmTotal'"
         :color="'#2c95fc'"
         :label="'spm'"/>  
-    </section>
-    <div class="map">
-      <MapGraph/>
-    </div>
+    </section>  
   </div>
 
 </template>
@@ -74,47 +73,48 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top:1rem;
-  
-  overflow: hidden;
-
-  .map{
-    position: absolute;
-    left:0;
-    top:0;
-    width: 100vw;
-    height: 100vh;
-  }
-  .part{
-    flex:1;
-    width: 100vw;
-    height: 100%;
-  }
+  background:url('./assets/img/pageBg.png') center;
+  background-size: cover;
 }
-.over{
-  z-index:2;
-}
-.left ,.right{
-  width: 33vw;
-  height: 30vh;
-}
-.flex{
-  display: flex;
-  .col{
-    // flex:1;
+.top{
+    display: flex;
+    flex:2;
     width: 100%;
     height: 100%;
-    width: 33vw;
+    justify-content: space-between;
+  }
+  .bottom{
+    flex:1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .col{
+      flex:1;
+      width: 100%;
+    height: 100%;
+    }
+  }
+
+.left{
+  flex:1;
+  width:33vw;
+
+}
+.mid{
+  flex:2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .graph{
+    width:80%;
+    height:80%;
   }
 }
+.right{
+  background-color: aqua;
+  flex:1;
+}
 
-.box{
-  position: relative;
-}
-.bottom{
-  background-color: pink;
-}
-.header{
-  height:3rem;
-}
+
 </style>

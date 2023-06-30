@@ -22,7 +22,22 @@
             data: [],
             type: 'bar'
             }
-        ]
+        ],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+            type: 'shadow'
+            }
+        },
+        markPoint: {
+            data: [
+            { type: 'max', name: 'Max' },
+            { type: 'min', name: 'Min' }
+            ]
+        },
+        markLine: {
+            data: [{ type: 'average', name: 'Avg' }]
+        }
     };
     onMounted(()=>{       
     })

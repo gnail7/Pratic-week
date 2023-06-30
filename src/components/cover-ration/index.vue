@@ -4,29 +4,48 @@
     import {getCityCoverage ,getProvinceCoverage} from '../../api'
     const  axisLine = {
         lineStyle: {
-        width: 30,
-        color: [
-            [0.3, '#67e0e3'],
-            [0.7, '#37a2da'],
-            [1, '#fd666d']
-        ]
         }
     }
     const defaultOption = {
          series: [
             {
-            name: 'Pressure',
-            type: 'gauge',
-            progress: {
-                show: true
+                name: 'Pressure',
+                type: 'gauge',
+                detail: {
+                    valueAnimation: true,
+                    formatter: '{value}',
+                    color:'#fff',    
+                    offsetCenter: ['0%', '70%']
+                },
+                progress:{
+                    show: true,
+                    itemStyle:{color:''}
+                },
+                title: {
+                    color:'#ffffff',
+                    offsetCenter: ['0%', '-120%']
+                },
+                show: true,
+                showAbove: true,
+                size: 25,
+                axisLabel:{
+                    // color:'#ffffff',
+                },
+                data: [],
+                splitLine: {
+                    length: 0,
+                    lineStyle: {
+                        width: 0,
+                        color: '#999'
+                    } 
+                },
+                pointer:{
+                    itemStyle: {
+                        color:'#ff4b48',
+                    },
+                },
             },
-            detail: {
-                valueAnimation: true,
-                formatter: '{value}',
-                color:'#fff'
-            },
-            data: []
-            }
+          
         ]
     };
 
@@ -37,36 +56,34 @@
         try {
             const r1 = await getProvinceCoverage()
             const r2  = await getCityCoverage()
-            let option1 = defaultOption
-            let option2 = defaultOption
-            option1.series[0].axisLine = axisLine
-            option1.series[0].data = [{value:Number(r1),name:'覆盖率'}]
-            const echart1 = new EchartsOption(option1)
-            echart1.init('cover1')
-            option2.series[0].data = [{value:Number(r2),name:'覆盖率'}]
-            const echart2 = new EchartsOption(option2)
-            echart2.init('cover2')
+            setOption(r1,'cover1','全国省网格覆盖率(%)')
+            setOption(r2,'cover2','全国大城市覆盖率(%)')
         } catch (error) {
-
             
         }
+    }
+    const setOption = (r,id,label)=>{
+        const copyOption = JSON.parse(JSON.stringify(defaultOption))
+        let color = '#ff4b48'
+        let option = copyOption
+        console.log(option)
+        option.series[0].data = [{value:Number(r),name:label}]
+        if(r>40){
+           color = '#2effae'
+        }
+        // option.series[0].progress.itemStyle.color = color
+        option.series[0].pointer.itemStyle.color = color
+        option.series[0].detail.color = color
+        const echart = new EchartsOption(option)
+        echart.init(id)
     }
 
 </script>
 
 <template>
     <div style="width:100%;height:100%" class="flex_arround">
-        <!-- <div class="left_box box">
-            <h2>全国省网格覆盖率(%)</h2>
-            <div id="cover1"  style="width:100%;height:100%"></div>
-        </div>
-        <div class="left_box box">
-            <h2>全国大城市覆盖率(%)</h2>
-            <div id="cover2" style="width:100%;height:100%"></div>
-        </div> -->
         <div id="cover1"  style="width:100%;height:100%"></div>
         <div id="cover2" style="width:100%;height:100%"></div>
-
     </div>
 </template>
 

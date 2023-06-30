@@ -1289,3 +1289,5 @@ export const GEO_CORD_MAP = {
 };
 
 export const BAIDU_MAP_AK = '15pyr9j8A1s5rRKTAEmCOQoKgfn6amxM'
+
+export const MAIN_COLOR = '#31abe3'

@@ -4,30 +4,22 @@
     import ItemWrap from '../item-wrap/index.vue'
     import {getGoodCountAPI,getAqiCount} from '../../api'
     const staticData = ref([])
-    const mockData = [{
-        label:'总人数',
-        value:133
-    },
-    {
-        label:'总安全员',
-        value:10
-    }]
     const init = async()=>{
         try {
             const r1 = await getGoodCountAPI()
             const r2 = await getAqiCount()
             staticData.value = ([
                 {
-                    label:'空气质量良好数量',
-                    value:r1
+                    label:'空气质量检测总数量',
+                    value:r2
                 },
                 {
                     label:'空气质量良好数量',
                     value:r1
                 },
                 {
-                    label:'空气质量良好数量',
-                    value:r1
+                    label:'空气质量污染数量',
+                    value:r2-r1
                 }
             ])
         } catch (error) {

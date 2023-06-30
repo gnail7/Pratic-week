@@ -18,8 +18,8 @@
         trigger: 'item'
     }
     const bmap = {
-        center: [114.114129, 30.550339],
-        zoom: 6,
+        center: [164.114129, 10.550339],
+        zoom: 4,
         roam: true,    
     }
     const convertData = function (data) {

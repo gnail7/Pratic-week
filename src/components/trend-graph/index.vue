@@ -3,26 +3,60 @@
     import  EChartsOption  from '../../utils/optionconfig';
     import {ref,onMounted,watch} from 'vue'
     import ItemWrap from 'components/item-wrap/index.vue'
+    import { MAIN_COLOR } from '../../constant';
     const monthData = ref([])
     const totalData = ref([])
     const option = {
         xAxis: {
             type: 'category',
             data: [],
-            textStyle:{
-                color:'#ffffff'
+            axisLabel: {
+                color:MAIN_COLOR
             }
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} 级',
+                color:MAIN_COLOR
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter:''
         },
         series: [
             {
                 data: [],
                 type: 'line',
-                smooth: true
-            }
+                smooth: true,
+                markPoint: {
+                    data: [
+                        { type: 'max', name: 'Max' },
+                        { type: 'min', name: 'Min' }
+                    ]
+                },
+                markLine: {
+                    data: [{ type: 'average', name: 'Avg' }]
+                }
+            },
+               
         ],     
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: { readOnly: false },
+                magicType: { type: ['line', 'bar'] },
+                restore: {},
+                saveAsImage: {},
+            },
+            iconStyle:{
+                color:'#fff'
+            }
+        },
     };
     onMounted(async()=>{
         await init()
