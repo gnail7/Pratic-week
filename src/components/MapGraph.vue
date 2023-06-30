@@ -6,7 +6,8 @@
     import * as echarts from 'echarts';
     import 'echarts/extension/bmap/bmap';
     import 'echarts/map/js/china.js'
-    import {STYLE_JSON,GEO_CORD_MAP} from '../constant'
+    import 'echarts/lib/component/legend'
+    import {MOCK_DATA,GEO_CORD_MAP,AQI_MAP} from '../constant'
     const data = ref()
     const title =  {
         left: 'center',
@@ -36,6 +37,43 @@
         }
         return res;
     };
+    const visualMapPiece = [
+            {
+                max: 1,
+                label: "优",
+                color: "#02E300",
+            },
+            {
+                min: 1,
+                max: 2,
+                label: "良",
+                color: "#FFFF00",
+            },
+            {
+                min: 2,
+                max: 3,
+                label: "轻度污染",
+                color: "#7E0123",
+            },
+            {
+                min: 3,
+                max: 4,
+                label: "中度污染",
+                color: "#FE0000",
+            },
+            {
+                min: 4,
+                max: 5,
+                label: "重度污染",
+                color: "#98004B",
+            },
+            {
+                min: 6,
+                max: 6,
+                label: "危险",
+                color: "#7E0123",
+            }
+    ]
     const noption ={
         series: [{
            type: 'map',
@@ -66,71 +104,41 @@
                 borderWidth: 2
             }
            },
-           data: [
-           { name: '北京', value: 3 },
-           { name: '天津', value: 3 },
-           { name: '上海', value: 3 },
-           { name: '重庆', value: 3 },
-           { name: '河北', value: 3 },
-           { name: '河南', value: 3 },
-           { name: '云南', value: 3},
-           { name: '辽宁', value: 3 },
-           { name: '黑龙江', value: 4 },
-           { name: '湖南', value: 2 },
-           { name: '安徽', value: 3 },
-           { name: '山东', value: 5 },
-           { name: '新疆', value: 3 },
-           { name: '江苏', value: 3 },
-           { name: '浙江', value: 9 },
-           { name: '江西', value: 15 },
-           { name: '湖北', value: 4 },
-           { name: '广西', value: 4 },
-           { name: '甘肃', value: 1 },
-           { name: '山西', value: 5 },
-           { name: '内蒙古', value: 5 },
-           { name: '陕西', value: 6 },
-           { name: '吉林', value: 6 },
-           { name: '福建', value: 7 },
-           { name: '贵州', value: 4 },
-           { name: '广东', value: 2 },
-           { name: '青海', value: 2 },
-           { name: '西藏', value: 9 },
-           { name: '四川', value: 0 },
-           { name: '宁夏', value: 15 },
-           { name: '海南', value: 7 },
-           { name: '台湾', value: 4 },
-           { name: '香港', value: 4 },
-           { name: '澳门', value: 3 }
-           ]
+           data:[]
         }],
         visualMap: [{
-          type: 'piecewise',
-          show: true,
-          categories: ['严重污染', '重度污染', '中度污染', '轻度污染', '良', '优'],
-          textStyle: {
-             color: '#828994'
-          },
-          itemWidth: 64, // 每个图元的宽度
-          itemHeight:12,
-          top: "top",                               
-          right: "0",
-          inRange: {
-              borderRadius: 4,
-              color: [ 
-                  '#7E0123',
-                  '#98004B',
-                  '#FE0000',
-                  '#FF7E00',
-                  '#FFFF00',
-                  '#02E300'
-              ]
-          },
+            show: true,
+            type: "piecewise",
+            pieces: visualMapPiece,
+            textStyle: {
+                color: '#828994'
+            },
+            itemWidth: 64, // 每个图元的宽度
+            itemHeight:12,
+            top: "top",                               
+            right: "0",
+            inRange: {
+                borderRadius: 4,
+            },
         }],
         tooltip: { 
-          trigger: 'item',  //数据项图形触发
-          backgroundColor: "#fff",  
-          borderWidth: 0,    
-          formatter: '地区：{b}<br/>数据：{c}'
+            trigger: 'item',  //数据项图形触发
+            backgroundColor: "#fff",  
+            borderWidth: 0,    
+            formatter: function (params) {
+                const {name,value} = params;
+                let temp =  
+                    '<div style="    border-bottom: 1px solid #ccc;font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'+name+'</div>'+
+                    `<div
+                      style='display: inline-block;
+                      width:  0.5rem;
+                      height: 0.5rem;
+                      margin-right:1rem;
+                      color: #5567cc'
+                      >`+'●'+'</div>'+
+                    '空气质量:'+`<span style='color:${params.color};font-weight:bold'>`+AQI_MAP.get(value)+'</span>'
+                return temp
+            },
         },
         toolbox: {
           show: true,
@@ -142,16 +150,23 @@
               saveAsImage: {}
           }
         },
-      }
+    }
     onMounted(() => {
+        const chartDom = document.getElementById('main');
+        const myChart = echarts.init(chartDom);   
+        noption.series[0].data = MOCK_DATA
+        myChart.setOption(noption);
         if (typeof BMap !== 'undefined') {
-            const chartDom = document.getElementById('main');
-            const myChart = echarts.init(chartDom);   
-
-            myChart.setOption(noption);
             // let bMap = myChart.getModel().getComponent("bmap").getBMap();
             // bMap.setMapStyle({ styleJson: STYLE_JSON });
         } 
     });
 </script>
+
+<style scoped>
+.tooltip{
+    /* color: pink !important; */
+    color:pink;
+}
+</style>
   

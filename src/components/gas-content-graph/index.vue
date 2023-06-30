@@ -1,14 +1,19 @@
 <script setup>
     import { inject, onMounted,toRefs,watch } from 'vue';
     import ItemWrap from '../../components/item-wrap/index.vue';
-    import EchartsOption from '../../utils/optionconfig.js'
+    import EchartsOption from '../../utils/optionconfig.js'; 
     const props = defineProps({
         att:String,
         label:String,
-        color:String
+        color:String,
+        type:{
+            type:String,
+            default:'line'
+        }
     })
+
     const totalData = inject('totalGasData')
-    const {label,att,color} = toRefs(props)
+    const {label,att,color,type} = toRefs(props)
     const option = {
         xAxis: {
             type: 'category',
@@ -20,7 +25,7 @@
         series: [
             {
             data: [],
-            type: 'bar',
+            type: type.value,
             markPoint: {
                 data: [
                 { type: 'max', name: 'Max' },
@@ -36,7 +41,22 @@
             trigger: 'axis',
             axisPointer: {
             type: 'shadow'
+            },
+            formatter:(params)=>{
+                const {name,value} = params[0];
+                let temp =  
+                    '<div style="    border-bottom: 1px solid #ccc;font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'+name+'</div>'+
+                    `<div
+                      style='display: inline-block;
+                      width:  0.5rem;
+                      height: 0.5rem;
+                      margin-right:1rem;
+                      color: #5567cc'
+                      >`+'●'+'</div>'+
+                    `${label.value}超标指数:`+`<span style='color:${params.color};font-weight:bold'>`+(value)+'</span>'
+                return temp
             }
+
         },
         markPoint: {
             data: [

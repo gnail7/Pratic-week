@@ -8,3 +8,7 @@ export function formatDate() {
     const second = date.getSeconds()>10? date.getSeconds():'0'+ date.getSeconds()
     return `${year}-${month}-${day} ${hour}:${minute}`;
 }
+
+export const formatterTooltip = ()=>{
+    
+}

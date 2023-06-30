@@ -6,6 +6,9 @@
   margin: 0;
   background: #04050f;
 }
+:root{
+  background: #04050f;
+}
 *{
   margin: 0;
   padding: 0;

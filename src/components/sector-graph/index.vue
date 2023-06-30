@@ -10,17 +10,25 @@
     const color =ref([])
     const option = {
         title,
+        type: 'pie',
         tooltip: {
-            trigger: 'item'
+            trigger: 'item',
+            formatter:(params)=>{
+                const {name,value} = params
+                 return (
+                        '<div style="border-bottom: 1px solid #ccc;font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">' +
+                        params.seriesName+'<br/>'+'</div>'+
+                        `<div
+                      style='display: inline-block;
+                      width:  0.5rem;
+                      height: 0.5rem;
+                      margin-right:1rem;
+                      color: ${params.color}'
+                      >`+'●'+'</div>'+
+                    `<span style='color:${params.color}'>`+name+'</span>'
+                    );
+            }
         },
-        // legend: {
-        //     orient: 'vertical',
-        //     left: '10rem',
-        //     top:'top',
-        //     textStyle:{
-        //         color:'#ffffff'
-        //     },
-        // },
         left:'20rem',
         // color:[],
         grid: {
@@ -29,6 +37,8 @@
             top: '20%',
             bottom: '20%',
         },
+        avoidLabelOverlap: false,
+
         series: [
             {
             name: '空气质量',
@@ -36,29 +46,32 @@
             radius: '50%',
             data:[],
             emphasis: {
-                itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                label: {
+                show: true,
+                fontSize: 20,
+                fontWeight: 'bold'
                 }
-            }
+            },
             }
         ],
         label: {
             color: '#31abe3'
         },
         labelLine: {
-            lineStyle: {
-                color: '#31abe3'
-            },
-            smooth: 0.2,
-            length: 10,
-            length2: 20
-        },
+        show: false
+      },
+        // labelLine: {
+        //     lineStyle: {
+        //         color: '#31abe3'
+        //     },
+        //     smooth: 0.2,
+        //     length: 10,
+        //     length2: 20
+        // },
         itemStyle: {
-            color: '#c23531',
-            shadowBlur: 200,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
         },
         animationType: 'scale',
         animationEasing: 'elasticOut',

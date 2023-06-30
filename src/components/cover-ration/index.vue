@@ -80,7 +80,6 @@
         option.series[0].data = [{value:Number(r),name:label}]
         const item = colorArr.find(item=>item[0]>Number(r))
         color = item[1]
-        // option.series[0].progress.itemStyle.color = color
         option.series[0].pointer.itemStyle.color = color
         option.series[0].detail.color = color
         const echart = new EchartsOption(option)

@@ -1292,4 +1292,51 @@ export const BAIDU_MAP_AK = '15pyr9j8A1s5rRKTAEmCOQoKgfn6amxM'
 
 export const MAIN_COLOR = '#31abe3'
 
+export const MOCK_DATA =  [
+    { name: '北京', value: 3 },
+    { name: '天津', value: 3 },
+    { name: '上海', value: 3 },
+    { name: '重庆', value: 3 },
+    { name: '河北', value: 3 },
+    { name: '河南', value: 3 },
+    { name: '云南', value: 3},
+    { name: '辽宁', value: 3 },
+    { name: '黑龙江', value: 4 },
+    { name: '湖南', value: 2 },
+    { name: '安徽', value: 3 },
+    { name: '山东', value: 5 },
+    { name: '新疆', value: 3 },
+    { name: '江苏', value: 3 },
+    { name: '浙江', value: 3 },
+    { name: '江西', value:4 },
+    { name: '湖北', value: 4 },
+    { name: '广西', value: 4 },
+    { name: '甘肃', value: 1 },
+    { name: '山西', value: 5 },
+    { name: '内蒙古', value: 5 },
+    { name: '陕西', value: 6 },
+    { name: '吉林', value: 6 },
+    { name: '福建', value: 3 },
+    { name: '贵州', value: 4 },
+    { name: '广东', value: 2 },
+    { name: '青海', value: 2 },
+    { name: '西藏', value: 2 },
+    { name: '四川', value: 1 },
+    { name: '宁夏', value: 5 },
+    { name: '海南', value: 5 },
+    { name: '台湾', value: 4 },
+    { name: '香港', value: 4 },
+    { name: '澳门', value: 3 }
+]
+
+
+export const AQI_MAP = new Map([
+    [1,'优'],
+    [2,'良'],
+    [3,'轻度污染'],
+    [4,'中度污染'],
+    [5,'重度污染'],
+    [6,'严重污染']
+])
+
 
