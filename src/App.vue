@@ -75,7 +75,11 @@
   box-sizing: border-box;
   background:url('./assets/img/pageBg.png') center;
   background-size: cover;
+  background: #04050f;
+
 }
+
+
 .top{
     display: flex;
     flex:2;
@@ -107,8 +111,8 @@
   justify-content: center;
   align-items: center;
   .graph{
-    width:80%;
-    height:80%;
+    width:100%;
+    height:100%;
   }
 }
 .right{

@@ -37,7 +37,22 @@
         },
         markLine: {
             data: [{ type: 'average', name: 'Avg' }]
-        }
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: { readOnly: false },
+                magicType: { type: ['line', 'bar'] },
+                restore: {},
+                saveAsImage: {},
+            },
+            iconStyle:{
+                color:'#fff'
+            }
+        },
     };
     onMounted(()=>{       
     })

@@ -4,6 +4,8 @@
     import {ref,onMounted,watch} from 'vue'
     import ItemWrap from 'components/item-wrap/index.vue'
     import { MAIN_COLOR } from '../../constant';
+    import {formatDate} from '../../utils/index'
+
     const monthData = ref([])
     const totalData = ref([])
     const option = {

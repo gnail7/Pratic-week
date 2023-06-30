@@ -6,11 +6,18 @@
         lineStyle: {
         }
     }
+    let colorArr = [
+        [40, '#FF6E76'],
+        [50, '#FDDD60'],
+        [75, '#58D9F9'],
+        [100, '#7CFFB2']
+    ]
     const defaultOption = {
          series: [
             {
                 name: 'Pressure',
                 type: 'gauge',
+                splitNumber:1,
                 detail: {
                     valueAnimation: true,
                     formatter: '{value}',
@@ -18,7 +25,7 @@
                     offsetCenter: ['0%', '70%']
                 },
                 progress:{
-                    show: true,
+                    show: false,
                     itemStyle:{color:''}
                 },
                 title: {
@@ -27,20 +34,24 @@
                 },
                 show: true,
                 showAbove: true,
-                size: 25,
                 axisLabel:{
                     // color:'#ffffff',
                 },
-                data: [],
-                splitLine: {
-                    length: 0,
+                axisLine: {
                     lineStyle: {
-                        width: 0,
-                        color: '#999'
-                    } 
+                    width: 10,
+                    color: [
+                        [0.25, '#FF6E76'],
+                        [0.5, '#FDDD60'],
+                        [0.75, '#58D9F9'],
+                        [1, '#7CFFB2']
+                    ]
+                }
                 },
+                data: [],
                 pointer:{
                     itemStyle: {
+                        width:6,
                         color:'#ff4b48',
                     },
                 },
@@ -66,11 +77,9 @@
         const copyOption = JSON.parse(JSON.stringify(defaultOption))
         let color = '#ff4b48'
         let option = copyOption
-        console.log(option)
         option.series[0].data = [{value:Number(r),name:label}]
-        if(r>40){
-           color = '#2effae'
-        }
+        const item = colorArr.find(item=>item[0]>Number(r))
+        color = item[1]
         // option.series[0].progress.itemStyle.color = color
         option.series[0].pointer.itemStyle.color = color
         option.series[0].detail.color = color

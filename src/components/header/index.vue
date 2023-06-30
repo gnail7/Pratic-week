@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from "vue";
-
+import Timer from '../timer/index.vue'
 
 </script>
 
@@ -13,6 +13,7 @@ import { reactive } from "vue";
       <div class="title">
         <span class="title-text">环境监测系统</span>
       </div>
+      <Timer/>
     </div>
   </div>
 </template>
