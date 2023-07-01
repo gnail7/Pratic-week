@@ -59,6 +59,7 @@ $item_title_content-height: calc(100% - 2rem);
       #00eaff 48.8525390625%,
       #01aaff 100%
     );
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }

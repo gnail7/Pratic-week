@@ -66,7 +66,7 @@
 
     const init = async()=>{
         try {
-            const r = (await getTrendGraphAPI())
+            const r = (await getTrendGraphAPI()).sort((a,b)=>(new Date(b.month)).getTime()-new Date(a.month).getTime()).reverse()
             monthData.value = r.map(item=>item.month)
             totalData.value = r.map(item=>item.total)
             option.series[0].data = totalData.value

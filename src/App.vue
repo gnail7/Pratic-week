@@ -71,7 +71,6 @@
         :label="'spm'"/>  
     </section>  
   </div>
-
 </template>
 
 <style scoped lang="less">
@@ -112,7 +111,7 @@
 
 .left{
   flex:1;
-  width:33vw;
+  width:33vw !important;
 
 }
 .mid{
@@ -126,7 +125,6 @@
   }
 }
 .right{
-  background-color: aqua;
   flex:1;
 }
 

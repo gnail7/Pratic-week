@@ -12,6 +12,7 @@
         [75, '#58D9F9'],
         [100, '#7CFFB2']
     ]
+    
     const defaultOption = {
          series: [
             {

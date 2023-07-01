@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import.meta.env.VITE_API_BASE_URL
 const instance = axios.create({
     baseURL:'http://zzpbzx.com:2346/statistics',
     timeout:15000,
@@ -8,7 +8,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(config=>{
     const token =(localStorage.getItem('token'))
-    config.me
     if (token) {
         config.headers['Authorization'] = (token)
     }

@@ -1329,7 +1329,6 @@ export const MOCK_DATA =  [
     { name: '澳门', value: 3 }
 ]
 
-
 export const AQI_MAP = new Map([
     [1,'优'],
     [2,'良'],

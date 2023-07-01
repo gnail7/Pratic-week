@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
 import {ref,computed} from 'vue'
 
-export const useUserInfoStore = defineStore('userInfo',()=>{    
+export const useGlobalStore = defineStore('globalStore',()=>{   
+    const globalData = ref([]) 
     return {
+         globalData
     }
 })

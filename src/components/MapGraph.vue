@@ -162,8 +162,7 @@
     watch(totalGasData,()=>{
         const chartDom = document.getElementById('main');
         const myChart = echarts.init(chartDom);  
-
-        noption.series[0].data =   totalGasData.value.map(item=>{
+        noption.series[0].data =  totalGasData.value.map(item=>{
             let name = item.provinceName
             if(item.provinceName.slice(-1)==='省'||'市'){
                 name = item.provinceName.slice(0,-1)

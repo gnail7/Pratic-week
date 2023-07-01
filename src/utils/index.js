@@ -9,6 +9,11 @@ export function formatDate() {
     return `${year}-${month}-${day} ${hour}:${minute}`;
 }
 
-export const formatterTooltip = ()=>{
-    
+
+
+export const characterValidate = (str,targetChar)=>{
+    const regex = /[\u4e00-\u9fff]/g;
+    const matches = str.match(regex);
+    const filteredMatches = matches.filter(char => char === targetChar);
+    return filteredMatches
 }
