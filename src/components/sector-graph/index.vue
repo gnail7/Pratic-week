@@ -3,6 +3,7 @@
     import  EChartsOption  from '../../utils/optionconfig';
     import ItemWrap from '../item-wrap/index.vue'
     import {getSectorGraphAPI} from '../../api'
+    import {AQI_MAP} from '../../constant'
     const sectorData = ref([])
     const title = {
    
@@ -14,8 +15,9 @@
         tooltip: {
             trigger: 'item',
             formatter:(params)=>{
-                const {name,value} = params
-                 return (
+                const {name,value,} = params
+                const {aqiId} = params.data
+                return (
                         '<div style="border-bottom: 1px solid #ccc;font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">' +
                         params.seriesName+'<br/>'+'</div>'+
                         `<div
@@ -25,12 +27,11 @@
                       margin-right:1rem;
                       color: ${params.color}'
                       >`+'●'+'</div>'+
-                    `<span style='color:${params.color}'>`+name+'</span>'
-                    );
+                    `<span style='color:${params.color}'>`+AQI_MAP.get(aqiId)+'</span>'
+                );
             }
         },
         left:'20rem',
-        // color:[],
         grid: {
             left: '20%',
             right: '20%',
@@ -38,7 +39,6 @@
             bottom: '20%',
         },
         avoidLabelOverlap: false,
-
         series: [
             {
             name: '空气质量',
@@ -47,9 +47,9 @@
             data:[],
             emphasis: {
                 label: {
-                show: true,
-                fontSize: 20,
-                fontWeight: 'bold'
+                    show: true,
+                    fontSize: 20,
+                    fontWeight: 'bold'
                 }
             },
             }
@@ -60,14 +60,6 @@
         labelLine: {
         show: false
       },
-        // labelLine: {
-        //     lineStyle: {
-        //         color: '#31abe3'
-        //     },
-        //     smooth: 0.2,
-        //     length: 10,
-        //     length2: 20
-        // },
         itemStyle: {
             borderRadius: 10,
             borderColor: '#fff',
@@ -90,7 +82,7 @@
             sectorData.value = r
             color.value = r.map(item=>item.color)
             sectorData.value = sectorData.value.map(item=>({
-                name:item.aqiExplain,
+                name:AQI_MAP.get(Number(item.aqiId))+'',
                 value:item.total,
                 ...item
             }))

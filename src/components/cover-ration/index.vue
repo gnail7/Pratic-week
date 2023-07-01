@@ -67,8 +67,8 @@
         try {
             const r1 = await getProvinceCoverage()
             const r2  = await getCityCoverage()
-            setOption(r1,'cover1','全国省网格覆盖率(%)')
-            setOption(r2,'cover2','全国大城市覆盖率(%)')
+            setOption(r1.toFixed(2),'cover1','全国省网格覆盖率(%)')
+            setOption(r2.toFixed(2),'cover2','全国大城市覆盖率(%)')
         } catch (error) {
             
         }

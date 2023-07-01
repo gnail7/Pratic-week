@@ -2,13 +2,14 @@
     <div ref="chart" id="main" style="width: 100%;height: 100%;"></div>
   </template>
 <script setup>
-    import { ref, onMounted, nextTick } from 'vue';
+    import { ref, onMounted, watch ,inject} from 'vue';
     import * as echarts from 'echarts';
     import 'echarts/extension/bmap/bmap';
     import 'echarts/map/js/china.js'
     import 'echarts/lib/component/legend'
     import {MOCK_DATA,GEO_CORD_MAP,AQI_MAP} from '../constant'
     const data = ref()
+    const totalGasData = inject('totalGasData')
     const title =  {
         left: 'center',
         textStyle:{
@@ -136,7 +137,7 @@
                       margin-right:1rem;
                       color: #5567cc'
                       >`+'●'+'</div>'+
-                    '空气质量:'+`<span style='color:${params.color};font-weight:bold'>`+AQI_MAP.get(value)+'</span>'
+                    '空气质量:'+`<span style='color:${params.color};font-weight:bold'>`+(AQI_MAP.get(value)?AQI_MAP.get(value):'暂无统计')+'</span>'
                 return temp
             },
         },
@@ -152,15 +153,31 @@
         },
     }
     onMounted(() => {
-        const chartDom = document.getElementById('main');
-        const myChart = echarts.init(chartDom);   
-        noption.series[0].data = MOCK_DATA
-        myChart.setOption(noption);
+    
         if (typeof BMap !== 'undefined') {
             // let bMap = myChart.getModel().getComponent("bmap").getBMap();
             // bMap.setMapStyle({ styleJson: STYLE_JSON });
         } 
     });
+    watch(totalGasData,()=>{
+        const chartDom = document.getElementById('main');
+        const myChart = echarts.init(chartDom);  
+
+        noption.series[0].data =   totalGasData.value.map(item=>{
+            let name = item.provinceName
+            if(item.provinceName.slice(-1)==='省'||'市'){
+                name = item.provinceName.slice(0,-1)
+            }
+            return {
+                name,value:item.aqiTotal
+            }
+        }) 
+        myChart.setOption(noption);
+        
+    })
+    const validate = ()=>{
+        
+    }
 </script>
 
 <style scoped>
