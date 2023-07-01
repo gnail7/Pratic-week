@@ -8,12 +8,14 @@
         value:Number,
         id:Number
     })
+
+
     const {label,value,id} = toRefs(props)
     const initUrl = [
-        {id:1,path:'/src/assets/img/left_top_lan.png',color:'#00bac9'},
-        {id:2,path:'/src/assets/img/left_top_huang.png',color:'#ffc600'},
-        {id:3,path:'/src/assets/img/left_top_hong.png',color:'#ff009a'},
-        {id:4,path:'/src/assets/img/left_top_lv.png',color:'#00ffa8'}
+        {id:1,path:new URL('/src/assets/img/left_top_lan.png', import.meta.url).href,color:'#00bac9'},
+        {id:2,path:new URL('/src/assets/img/left_top_huang.png', import.meta.url).href,color:'#ffc600'},
+        {id:3,path:new URL('/src/assets/img/left_top_hong.png', import.meta.url).href,color:'#ff009a'},
+        {id:4,path:new URL('/src/assets/img/left_top_lv.png', import.meta.url).href,color:'#00ffa8'}
     ]
     const thisIcon = computed(()=>initUrl[id.value])   
 </script>
