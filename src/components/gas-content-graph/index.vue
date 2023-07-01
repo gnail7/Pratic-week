@@ -11,7 +11,6 @@
             default:'line'
         }
     })
-
     const totalData = inject('totalGasData')
     const {label,att,color,type} = toRefs(props)
     const option = {

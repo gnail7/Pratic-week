@@ -165,7 +165,6 @@
 
 <style scoped>
 .tooltip{
-    /* color: pink !important; */
     color:pink;
 }
 </style>

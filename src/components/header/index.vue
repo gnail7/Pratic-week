@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from "vue";
-import Timer from '../timer/index.vue'
+  import { reactive } from "vue";
+  import Timer from '../timer/index.vue'
 
 </script>
 
