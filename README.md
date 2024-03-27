@@ -1,5 +1,8 @@
 # 实践周第一组大屏端
 
+## 效果展示
+![alt text](public/78321711525726_.pic.jpg)
+
 ## 项目配置：
     vue3+echart+pinia
  - 环境变量配置
@@ -39,6 +42,3 @@
         const totalData = inject('totalGasData')
     ```
   - `toolBox`配置,有更多的操作
-
-### 各类柱状图和折线图
-    - `markpoint`可以配置最大值最小值，或者是平均着
